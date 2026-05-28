@@ -1,0 +1,71 @@
+[
+  {
+    "action": "hijack-dns",
+    "protocol": "dns"
+  },
+  {
+    "action": "route",
+    "ip_is_private": true,
+    "outbound": "direct" 
+  },
+  {
+    "action": "route",
+    "rule_set": [
+        "geosite-openai",
+        "geosite-google-gemini"
+    ],
+    "outbound": "proxy"
+  },
+  {
+   "action": "route",
+    "outbound": "proxy",
+    "rule_set": [
+      "geoip-telegram",
+      "geosite-telegram",
+      "geosite-whatsapp",
+      "geosite-category-porn",
+      "geosite-instagram",
+      "geosite-facebook",
+      "geosite-youtube"
+
+    ]
+  },
+  {
+  "action": "route",
+    "domain_suffix": ["lordfilm135.ru", "cambridge.org", "gigya.com", "deepl.com", "hysteria.network"],
+    "domain_keyword": ["kinogo", "cinemar"],
+    "outbound": "proxy"
+  },
+  {
+    "domain_suffix": ["spdmpgcdn.com"],
+    "action": "reject"
+  },
+  {
+    "rule_set": [
+      "geosite-category-ads-all",
+      "geosite-malware", 
+      "geosite-cryptominers"
+    ],
+    "action": "reject"
+  },
+  {
+    "action": "route",
+    "outbound": "direct",
+    "rule_set": [
+        "geoip-ru",
+        "geosite-ru",
+        "geosite-category-ru",
+        "geosite-ru-available-only-inside"
+    ]
+  },
+  {
+   "action": "route",
+    "ip_cidr": [
+      "0.0.0.0/0",
+      "::/0"
+    ],
+    "outbound": "direct",
+    "rule_set": []
+  }
+
+]
